@@ -17,3 +17,10 @@ docker stop <container_id>
 
  to list docker img
  docker images
+
+
+ in requrirement.txt "-e ." is used so that the housing package/folder can be install which has __init__.py file
+  
+ in setup.py we are removing "-e ." as for installing libraries we are using find_packages and both(find_packages,-e .) does the same thing so for that we are removing it
+
+ if we are not running setup.py then just run "pip install -r requirement.txt"

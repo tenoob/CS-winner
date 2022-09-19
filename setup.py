@@ -1,13 +1,13 @@
-from setuptools import setup
+from setuptools import setup,find_packages
 from typing import List
 
 
 #declaring variables for setup function
 PROJECT_NAME='housing_prediction'
-VERSION='0.0.1'
+VERSION='0.0.2'
 AUTHOR='n00b'
 DESCRIPTION = 'First full project'
-PACKAGES = ['housing']
+PACKAGES = find_packages()  #will return the folder name which has __init__.py 
 REQUIREMENT_FILE_NAME = 'requirement.txt'
 
 def get_requirements_list()->list[str]:
@@ -19,7 +19,7 @@ def get_requirements_list()->list[str]:
     contain name of libraries mentioned in reqirement.txt file
     """
     with open(REQUIREMENT_FILE_NAME) as requirement_file:
-        return requirement_file.readlines()
+        return requirement_file.readlines().remove("-e .")
 
 
 setup(
