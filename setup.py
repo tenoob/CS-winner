@@ -4,7 +4,7 @@ from typing import List
 
 #declaring variables for setup function
 PROJECT_NAME='housing_prediction'
-VERSION='0.0.2'
+VERSION='0.0.3'
 AUTHOR='n00b'
 DESCRIPTION = 'First full project'
 PACKAGES = find_packages()  #will return the folder name which has __init__.py 
