@@ -19,7 +19,7 @@ class HousingException(Exception):
         
         _,_,exec_tb = error_detail.exc_info()
         
-        line_number = exec_tb.tb_frame.f_lineno
+        line_number = exec_tb.tb_lineno
         file_name = exec_tb.tb_frame.f_code.co_filename
 
         error_message = f"Error occured in script: [{file_name}] at line number: [{line_number}] error message: [{error_message}]"
