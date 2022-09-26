@@ -19,9 +19,9 @@ class Configration:
 
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         try:
-            artifcat_dir = self.training_pipeline_config.artifact_dir
+            artifact_dir = self.training_pipeline_config.artifact_dir
             data_ingestion_artifact_dir = os.path.join(
-                artifcat_dir,
+                artifact_dir,
                 DATA_INGESTION_ARTIFACT_DIR,
                 self.time_stamp
             )
@@ -62,6 +62,7 @@ class Configration:
             )
 
             logging.info(f"Data Ingestion config: {data_ingestion_config}")
+            return data_ingestion_config
         except Exception as e:
             raise HousingException(e,sys) from e
 
@@ -89,6 +90,7 @@ class Configration:
             training_pipeline_config[TRAINING_PIPELINE_ARTIFACT_KEY])
 
             training_pipeline_config = TrainingPipelineConfig(artifact_dir=artifact_dir)
-            logging.info("Trainign pipline config: {training_pipeline_config}")
+            logging.info(f"Training pipline config: {training_pipeline_config}")
+            return training_pipeline_config
         except Exception as e:
             raise HousingException(e,sys) from e

@@ -9,6 +9,8 @@ import pandas as pd
 from sklearn.model_selection import StratifiedShuffleSplit
 import numpy as np
 
+
+
 class DataIngestion:
 
     def __init__(self,data_ingestion_config:DataIngestionConfig) -> None:
@@ -26,8 +28,8 @@ class DataIngestion:
             #folder location to download file
             tgz_download_dir = self.data_ingestion_config.tgz_download_dir
 
-            if os.path.exists(tgz_download_dir):
-                os.remove(tgz_download_dir)
+            """if os.path.exists(tgz_download_dir):
+                os.remove(tgz_download_dir)"""
 
             os.makedirs(tgz_download_dir,exist_ok=True)
 
