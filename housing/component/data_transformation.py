@@ -38,7 +38,7 @@ class FeatureGenerator(BaseEstimator,TransformerMixin):
                 households_index = self.columns.index(COLUMN_HOUSEHOLDS)
                 total_bedrooms_index = self.columns.index(COLUMN_TOTAL_BEDROOMS)
 
-            self.add_bed_rooms_per_room = add_bedrooms_per_room
+            self.add_bedrooms_per_room = add_bedrooms_per_room
             self.total_rooms_index = total_rooms_index
             self.population_index = population_index
             self.total_bedrooms_index = total_bedrooms_index
@@ -54,7 +54,7 @@ class FeatureGenerator(BaseEstimator,TransformerMixin):
             room_per_household = X[:,self.total_rooms_index] / X[:,self.households_index]
             population_per_household = X[:,self.population_index] / X[:,self.households_index]
 
-            if self.add_bed_rooms_per_room:
+            if self.add_bedrooms_per_room:
                 bedrooms_per_room = X[:,self.total_bedrooms_index] / X[:,self.total_rooms_index]
 
                 generated_feature = np.c_[X,room_per_household,population_per_household,bedrooms_per_room]
@@ -157,8 +157,8 @@ class DataTransformation:
             transformed_train_dir = self.data_transformation_config.transformed_train_dir
             transformed_test_dir = self.data_transformation_config.transformed_test_dir
 
-            train_file_name = os.path.basename(train_file_name).replace(".csv",".npz")
-            test_file_name = os.path.basename(test_file_name).replace(".csv",".npz")
+            train_file_name = os.path.basename(train_file_path).replace(".csv",".npz")
+            test_file_name = os.path.basename(test_file_path).replace(".csv",".npz")
 
             transformed_train_file_path = os.path.join(transformed_train_dir,
                                                         train_file_name)
