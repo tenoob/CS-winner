@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from tkinter.tix import COLUMN
 
 Root_DIR = os.getcwd() # to get current working dir
 
@@ -44,3 +45,15 @@ DATA_TRANSFORMATION_TRAIN_DIR_NAME_KEY = 'transformed_train_dir'
 DATA_TRANSFORMATION_TEST_DIR_NAME_KEY = 'transformed_test_dir'
 DATA_TRANSFORMATION_PREPROCESSING_DIR_KEY = 'preprocessed_dir'  
 DATA_TRANSFORMATION_PREPROCESSED_OBJECT_FILE_NAME = 'preprocessed_object_file_name'
+
+#Data Transformation columns constant variable
+COLUMN_TOTAL_ROOMS = 'total_rooms'
+COLUMN_POPULATION = 'population'
+COLUMN_HOUSEHOLDS = 'households'
+COLUMN_TOTAL_BEDROOMS = 'total_bedrooms'
+
+#Schema.yaml variables
+DATASET_SCHEMA_COLUMNS_KEY = 'columns'
+NUMERICAL_COLUMN_KEY = 'numerical_columns'
+CATEGORICAL_COLUMN_KEY = 'categorical_columns'
+TARGET_COLUMN_KEY = 'target_column'
