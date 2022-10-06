@@ -9,7 +9,7 @@ DataTranformationConfig = namedtuple("DataTransformationConfig",
 ["add_bedroom_per_room",'transformed_train_dir','transformed_test_dir','preprocessed_object_file_path'])
 
 ModelTrainerConfig = namedtuple("ModelTrainerConfig",
-['trained_model_file_path','base_accuracy'])
+['trained_model_file_path','base_accuracy','model_config_file_path'])
 
 ModelEvaluationConfig = namedtuple("ModelEvaluationConfig",
 ['model_evalaution_file_path','time_stamp'])
