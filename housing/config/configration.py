@@ -1,6 +1,7 @@
 #matching config.yaml and config_entity.py
 from logging import exception
 import sys,os
+from urllib import response
 from housing.entity import artifact_entity
 from housing.entity.config_entity import DataIngestionConfig,DataValidationConfig,DataTranformationConfig,ModelEvaluationConfig,ModelPusherConfig,ModelTrainerConfig,TrainingPipelineConfig
 from housing.util.util import read_yaml_file
@@ -188,7 +189,28 @@ class Configration:
             raise HousingException(e,sys) from e
 
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
-        pass
+        try:
+            model_evaluation_config = self.config_info[MODEL_EVALUATION_CONFIG_KEY]
+            artifact_dir = os.path.join(
+                self.training_pipeline_config.artifact_dir,
+                MODEL_EVALUATION_ARTIFACT_KEY)
+
+            model_evaluation_file_path = os.path.join(
+                artifact_dir,
+                model_evaluation_config[MODEL_EVALUATION_FILE_NAME_KEY])
+            
+            response = ModelEvaluationConfig(
+                model_evalaution_file_path=model_evaluation_file_path,
+                time_stamp=self.time_stamp
+            )
+
+            logging.info(f"Model Evaluation Config: {response}")
+            return response
+
+                                
+        except Exception as e:
+            raise HousingException(e,sys) from e
+
 
     def get_model_pusher_config(self) -> ModelPusherConfig:
         pass
