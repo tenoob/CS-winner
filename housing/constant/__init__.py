@@ -79,3 +79,9 @@ PARAM_KEY = 'params'
 MODEL_EVALUATION_CONFIG_KEY = 'model_evaluation_config'
 MODEL_EVALUATION_FILE_NAME_KEY = 'model_evaluation_file_name'
 MODEL_EVALUATION_ARTIFACT_KEY = 'model_evaluation'
+BEST_MODEL_KEY = 'best_model'
+HISTORY_KEY = 'history'
+MODEL_PATH_KEY = 'model_path'
+
+
+
