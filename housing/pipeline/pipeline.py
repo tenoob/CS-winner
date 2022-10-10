@@ -84,7 +84,7 @@ class Pipeline:
     def start_model_pusher(self,model_eval_artifact: ModelEvaluationArtifact) -> ModelPusherArtifact:
         try:
             model_pusher = ModelPusher(
-                model_pusher_config=self.config.get_model_pusher_config,
+                model_pusher_config=self.config.get_model_pusher_config(),
                 model_eval_artifact=model_eval_artifact
             )
 
