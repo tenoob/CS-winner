@@ -84,4 +84,9 @@ HISTORY_KEY = 'history'
 MODEL_PATH_KEY = 'model_path'
 
 
+#Model Pusher related variables
+MODEL_PUSHER_CONFIG_KEY = 'model_pusher_config'
+MODEL_PUSHER_MODEL_EXPORT_DIR_KEY = 'model_export_dir'
+
+
 

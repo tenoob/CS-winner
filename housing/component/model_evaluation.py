@@ -73,7 +73,7 @@ class ModelEvaluation:
                     history =  {HISTORY_KEY:model_history}
                     eval_result.update(history)
                 else:
-                    model_eval_content[HISTORY_KEY].updata(model_history)
+                    model_eval_content[HISTORY_KEY].update(model_history)
 
             model_eval_content.update(eval_result)
             logging.info(f"Updated eval result: {model_eval_content}")

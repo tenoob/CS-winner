@@ -213,7 +213,19 @@ class Configration:
 
 
     def get_model_pusher_config(self) -> ModelPusherConfig:
-        pass
+        try:
+            time_stamp = f"{datetime.now().strftime('%Y%m%d%H%M%S')}"
+            model_pusher_config_info = self.config_info[MODEL_PUSHER_CONFIG_KEY]
+            export_dir_path = os.path.join(
+                Root_DIR,
+                model_pusher_config_info[MODEL_PUSHER_MODEL_EXPORT_DIR_KEY],
+                time_stamp)
+
+            model_pusher_config = ModelPusherConfig(export_dir_path=export_dir_path)
+            logging.info(f"Model Pusher config: {model_pusher_config}")
+            return model_pusher_config
+        except Exception as e:
+            raise HousingException(e,sys) from e
 
     def get_training_pipeline_config(self) -> TrainingPipelineConfig:
         try:

@@ -1,11 +1,12 @@
 
 from jinja2 import ModuleLoader
 from housing.component.model_evaluation import ModelEvaluation
+from housing.component.model_pusher import ModelPusher
 from housing.config.configration import Configration
 from housing.logger import logging
 from housing.exception import HousingException
 
-from housing.entity.artifact_entity import DataIngestionArtifact, DataTransformationArtifact,DataValidationArtifact, ModelEvaluationArtifact,ModelTrainerArtifact
+from housing.entity.artifact_entity import DataIngestionArtifact, DataTransformationArtifact,DataValidationArtifact, ModelEvaluationArtifact, ModelPusherArtifact,ModelTrainerArtifact
 from housing.entity.config_entity import DataIngestionConfig
 from housing.component.data_ingestion import DataIngestion
 from housing.component.data_validation import DataValidation
@@ -80,8 +81,16 @@ class Pipeline:
         except Exception as e:
             raise HousingException(e,sys) from e
 
-    def start_model_pusher(self):
-        pass
+    def start_model_pusher(self,model_eval_artifact: ModelEvaluationArtifact) -> ModelPusherArtifact:
+        try:
+            model_pusher = ModelPusher(
+                model_pusher_config=self.config.get_model_pusher_config,
+                model_eval_artifact=model_eval_artifact
+            )
+
+            return model_pusher.initiate_model_pusher()
+        except Exception as e:
+            raise HousingException(e,sys) from e
     
     def run_pipeline(self):
         try:
@@ -102,5 +111,13 @@ class Pipeline:
                 data_ingestion_artifact=data_ingestion_artifact,
                 data_validation_artifact=data_validation_artifact,
                 model_trainer_artifact=model_trainer_artifact)
+
+
+            if model_evaluation_artifact.is_model_accepted:
+                model_pusher_artifact = self.start_model_pusher(model_evaluation_artifact)
+                logging.info(f'Model pusher coonfig: {model_pusher_artifact}')
+            else:
+                logging.info("Trained model rejected")
+            logging.info("Pipeline over")
         except Exception as e:
             raise HousingException(e,sys) from e
