@@ -22,3 +22,27 @@ model_selection:
     search_param_grid:
       min_samples_leaf:
       - 6
+      - 3
+      max_depth:
+      - 3
+      - 5
+  module_2:
+    class: DecisionTreeRegressor
+    module: sklearn.tree
+    params:
+      min_samples_leaf: 3
+    search_param_grid:
+      min_samples_leaf:
+      - 6
+      - 15
+      - 30
+      max_features:
+      - 1
+      - sqrt
+      max_leaf_nodes:
+      - 5
+      - 15
+      - 50
+      splitter:
+      - best
+      - random
