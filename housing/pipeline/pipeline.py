@@ -42,7 +42,7 @@ class Pipeline(Thread):
                 EXPERIMENT_DIR_KEY,
                 EXPERIMENT_FILE_NAME
             )
-            super().__init__()
+            super().__init__(daemon=False, name="pipeline")
             self.config = config
         except Exception as e:
             raise HousingException(e,sys) from e

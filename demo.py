@@ -7,8 +7,13 @@ import os,sys
 
 def main():
     try:
-        pipeline = Pipeline()
-        pipeline.run_pipeline()
+        
+        config_path = os.path.join('config','config.yaml')
+
+        pipeline = Pipeline(Configration(
+            config_file_path=config_path
+        ))
+        pipeline.start()
 
         """data_validation_config = Configration().get_data_validation_config()
         print(data_validation_config)"""
